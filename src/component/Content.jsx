@@ -11,7 +11,9 @@ function Content() {
     const [spend, setSpend] = useState('')
     useEffect(() => {
         axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/collectall`).
-            then(res => { setSam(res.data) })
+            then(res => {
+                setSam(res.data)
+            })
             .catch(err => console.log(err))
         axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/getfilter`).
             then(res => {
@@ -76,7 +78,7 @@ function Content() {
 
 
     }
-const fire = fz1 && fz1[0] && fz1[0].details ? fz1[0].details.map((_, index, array) => array[array.length - 1 - index]) : [];
+    const fire = fz1 && fz1[0] && fz1[0].details ? fz1[0].details.map((_, index, array) => array[array.length - 1 - index]) : [];
     const deleteone = (item) => {
 
         axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/deleteone/${fz1[0]._id}/item/${item._id}`)
@@ -88,7 +90,7 @@ const fire = fz1 && fz1[0] && fz1[0].details ? fz1[0].details.map((_, index, arr
         <div className='bgy'>
             {!fz1 && <div className='w-[100%] h-[100vh] flex items-center justify-center fixed z-[60] bg-[black]'>
                 <div className='flex items-center justify-center gap-3 flex-col'>
-                    <img src={load} alt="" className='mr-5'/>
+                    <img src={load} alt="" className='mr-5' />
 
 
                     <div className="spinner">
@@ -113,7 +115,7 @@ const fire = fz1 && fz1[0] && fz1[0].details ? fz1[0].details.map((_, index, arr
 
                     </div>
                     <div className='flex  flex-col max-md:flex-row   px-3 max-md:px-0 gap-3 '>
-                        <input type="number" value={spend} onChange={(e) => { setSpend(e.target.value) }} placeholder='This much' name="" id="" className='bg-blue-950 text-[white] vb border  border-blue-400 border-b-4 h-[41%] px-4 py-2 rounded-md outline-none tracking-wider font-[600] text-center [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none' />
+                        <input type="number" value={spend} onChange={(e) => { setSpend(e.target.value) }} placeholder='This much' name="" id="" className='bg-blue-950 text-[white] vb border  border-blue-400 border-b-4 h-[41%] px-4 py-2 max-sm:py-[11px] rounded-md outline-none tracking-wider font-[600] text-center [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none' />
                         {/* <button className='text-center h-[42%] bgf  text-white' onClick={()=>{addone()}}>E N T E R</button> */}
                         <button onClick={() => { addone() }} className="bg-blue-950 flex-1 cursor-pointer  text-[white] border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
                             <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
@@ -141,7 +143,18 @@ const fire = fz1 && fz1[0] && fz1[0].details ? fz1[0].details.map((_, index, arr
                     {fire && fire.map((item, index) => {
                         return <>
                             <div className='flex bg-[#ffffffe8] my-3 rounded-md '>
-                                <div className='flex-1 p-5 text-[#172554] font-[600] capitalize '>{item.desc}</div>
+                                <div className='flex-1'>
+                                    <div className=' px-4 pt-4 pb-2 text-[#172554] font-[600] capitalize '>{item.desc}</div>
+                                    <div className='px-4 pb-4 text-[10px] text-gray-400'>
+                                        {new Date(item.date).toLocaleString('default', {
+                                            month: 'long',
+                                            day: 'numeric',
+                                            year: 'numeric',
+
+                                        })}
+                                    </div>
+                                </div>
+
                                 <div className='w-[200px] max-sm:w-[70px] block   text-center text-[#172554] font-[600] max-sm:px-0 p-5'>₹ {item.spend}</div>
                                 <div className='pt-[27px] pr-[15px] cursor-pointer'
                                     onClick={() => {

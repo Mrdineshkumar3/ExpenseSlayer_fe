@@ -14,24 +14,7 @@ function Home() {
     axios.post( `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/collectall`).
     then(res=>{setArray(res.data)})
     .catch(err => console.log(err))
-    const samplearray = [{
-        title:'monkey D loffy',
-        totalamount:0,
-        details:[{
-            desc:'for this',
-            spend:0
-        },]
-    },
-{
-        title:'monkey D loffy',
-        totalamount:3450,
-        details:[{
-            desc:'for this',
-            spend:0
-        },]
-    },
 
- ]
     const reversed = array.map((_, index, array) => array[array.length - 1 - index]);
     const [create,setCreate]=useState(true)
     const [title,setTitle] = useState()
@@ -51,7 +34,7 @@ function Home() {
     },[])
   return (
     <div className='bgz'>
-        {loading && <div className='w-[100%] h-[100vh] flex items-center justify-center fixed z-[60] bg-[black]'>
+        {array.length == 0 && <div className='w-[100%] h-[100vh] flex items-center justify-center fixed z-[60] bg-[black]'>
                        <div className='flex items-center justify-center gap-3 flex-col'>
                            <img src={load} alt="" className='mr-5'/>
        
@@ -127,7 +110,7 @@ function Home() {
 
             </div>
 
-            <h2 className='text-right pr-3 mt-[35px] font-[500] patua-one-regular text-[white] capitalize'>{item.title}</h2>
+            <h2 className='text-right pr-3 max-sm:text-[14px] mt-[35px] font-[500] patua-one-regular text-[white] capitalize'>{item.title}</h2>
             <div className=' flex  flex-col mt-[30px] pl-3 '>
              <p className='text-[white] text-[8px] '>Total Expenses</p>
             <p className=' text-[25px] font-[800] text-[white]'>₹ {item.totalamount}</p>
