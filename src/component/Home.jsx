@@ -127,7 +127,7 @@ function Home() {
 
             </div>
 
-            <h2 className='text-right pr-3 mt-[35px] font-[500]  text-[white] capitalize'>{item.title}</h2>
+            <h2 className='text-right pr-3 mt-[35px] font-[500] patua-one-regular text-[white] capitalize'>{item.title}</h2>
             <div className=' flex  flex-col mt-[30px] pl-3 '>
              <p className='text-[white] text-[8px] '>Total Expenses</p>
             <p className=' text-[25px] font-[800] text-[white]'>₹ {item.totalamount}</p>

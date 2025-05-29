@@ -130,7 +130,7 @@ const fire = fz1 && fz1[0] && fz1[0].details ? fz1[0].details.map((_, index, arr
                 <div className="notification ">
                     <div className="notiglow"></div>
                     <div className="notiborderglow"></div>
-                    <div className="notititle capitalize">{fz1 && fz1.length > 0 && fz1[0].title}</div>
+                    <div className="notititle capitalize"> {fz1 && fz1.length > 0 && fz1[0].title}</div>
                     <div className="notibody font-[600]">₹ {fz1 && fz1.length > 0 && fz1[0].totalamount}</div>
                 </div>
             </div>
